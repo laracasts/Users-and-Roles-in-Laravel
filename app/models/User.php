@@ -7,21 +7,21 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait;
+    use UserTrait, RemindableTrait;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = array('password', 'remember_token');
 
     /**
      * @var array
@@ -32,9 +32,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @return mixed
      */
     public function roles()
-	{
-		return $this->belongsToMany('Role')->withTimestamps();
-	}
+    {
+        return $this->belongsToMany('Role')->withTimestamps();
+    }
 
     /**
      * Does the user have a particular role?
@@ -43,14 +43,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @return bool
      */
     public function hasRole($name)
-	{
-		foreach ($this->roles as $role)
-		{
-			if ($role->name == $name) return true;
-		}
+    {
+        foreach ($this->roles as $role)
+        {
+            if ($role->name == $name) return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
     /**
      * Assign a role to the user
@@ -59,9 +59,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @return mixed
      */
     public function assignRole($role)
-	{
-		return $this->roles()->attach($role);
-	}
+    {
+        return $this->roles()->attach($role);
+    }
 
     /**
      * Remove a role from a user
@@ -70,8 +70,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @return mixed
      */
     public function removeRole($role)
-	{
-		return $this->roles()->detach($role);
-	}
+    {
+        return $this->roles()->detach($role);
+    }
 
 }

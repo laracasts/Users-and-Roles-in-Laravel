@@ -2,6 +2,11 @@
 
 class Role extends \Eloquent {
 
-	protected $fillable = ['name'];
+    /**
+     * Fillable fields
+     *
+     * @var array
+     */
+    protected $fillable = ['name'];
 
 }
